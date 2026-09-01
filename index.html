@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Level 6/6+ - Study Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1 class="header-title">हर हर महादेव</h1>
+        <h2 class="header-subtitle">Mission Level 6/6+</h2>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Section 1: 365-Day Track Sheet -->
+        <section class="section day-tracker-section">
+            <h2 class="section-title">📅 365-Day Progress Tracker</h2>
+            <div class="day-tracker">
+                <div id="dayTrackerGrid" class="day-grid"></div>
+            </div>
+            <div class="tracker-stats">
+                <p>Days Completed: <span id="daysCompleted">0</span>/365</p>
+                <p>Current Streak: <span id="currentStreak">0</span> days</p>
+                <p>Progress: <span id="progressPercentage">0</span>%</p>
+            </div>
+        </section>
+
+        <!-- Section 2: Daily To-Do List -->
+        <section class="section todo-section">
+            <h2 class="section-title">✓ Daily To-Do List (Up to 50 tasks)</h2>
+            <div class="date-selector">
+                <label for="todoDate">Select Date:</label>
+                <input type="date" id="todoDate">
+                <button id="todayBtn" class="btn btn-primary">Today</button>
+                <button id="tomorrowBtn" class="btn btn-primary">Tomorrow</button>
+            </div>
+            
+            <div class="todo-input">
+                <input type="text" id="todoInput" placeholder="Add a new task..." maxlength="100">
+                <button id="addTodoBtn" class="btn btn-primary">Add Task</button>
+            </div>
+            
+            <div class="todo-count">
+                Tasks: <span id="todoCount">0</span>/50
+            </div>
+            
+            <ul id="todoList" class="todo-list"></ul>
+        </section>
+
+        <!-- Section 3: Test Score Tracker -->
+        <section class="section test-section">
+            <h2 class="section-title">📊 Test Score Tracker</h2>
+            
+            <div class="test-input-section">
+                <div class="form-group">
+                    <label for="testType">Test Type:</label>
+                    <select id="testType">
+                        <option value="">Select Test Type</option>
+                        <option value="math">Mathematics</option>
+                        <option value="reasoning">Reasoning</option>
+                        <option value="english">English</option>
+                        <option value="gs">General Studies</option>
+                        <option value="computer">Computer</option>
+                        <option value="full">Full Length Test</option>
+                        <option value="tier2-s1">Tier 2 - Section 1</option>
+                        <option value="tier2-s2">Tier 2 - Section 2</option>
+                        <option value="tier2-computer">Tier 2 - Computer</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="testDate">Test Date:</label>
+                    <input type="date" id="testDate">
+                </div>
+                
+                <div class="form-group">
+                    <label for="testScore">Score:</label>
+                    <input type="number" id="testScore" min="0" max="100" placeholder="Enter score">
+                </div>
+                
+                <div class="form-group">
+                    <label for="testTotalMarks">Total Marks:</label>
+                    <input type="number" id="testTotalMarks" min="1" placeholder="Enter total marks" value="100">
+                </div>
+                
+                <button id="addTestBtn" class="btn btn-primary">Add Test Score</button>
+            </div>
+
+            <!-- Test Records -->
+            <div class="test-records">
+                <h3>Test Records</h3>
+                <table id="testTable" class="test-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Test Type</th>
+                            <th>Score</th>
+                            <th>Total Marks</th>
+                            <th>Percentage</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="testTableBody">
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Average Scores -->
+            <div class="average-scores">
+                <h3>Average Scores</h3>
+                <div class="average-period">
+                    <button class="btn btn-secondary active" data-period="daily">Daily</button>
+                    <button class="btn btn-secondary" data-period="weekly">Weekly</button>
+                    <button class="btn btn-secondary" data-period="monthly">Monthly</button>
+                    <button class="btn btn-secondary" data-period="total">Total</button>
+                </div>
+                <div id="averageScoresContainer" class="scores-grid">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Study Hours Tracker -->
+        <section class="section study-hours-section">
+            <h2 class="section-title">⏰ Study Hours Tracker</h2>
+            
+            <div class="study-input-section">
+                <div class="form-group">
+                    <label for="studyDate">Date:</label>
+                    <input type="date" id="studyDate">
+                </div>
+                
+                <div class="form-group">
+                    <label for="studyHours">Study Hours:</label>
+                    <input type="number" id="studyHours" min="0" step="0.5" placeholder="Enter hours" max="24">
+                </div>
+                
+                <div class="form-group">
+                    <label for="studySubject">Subject/Topic:</label>
+                    <input type="text" id="studySubject" placeholder="What did you study?" maxlength="50">
+                </div>
+                
+                <button id="addStudyBtn" class="btn btn-primary">Add Study Hours</button>
+            </div>
+
+            <!-- Study Records -->
+            <div class="study-records">
+                <h3>Study Records</h3>
+                <table id="studyTable" class="study-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Hours</th>
+                            <th>Subject/Topic</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studyTableBody">
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Study Statistics -->
+            <div class="study-stats">
+                <h3>Study Statistics</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h4>Today's Study Hours</h4>
+                        <p id="todayStudyHours">0 hrs</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Weekly Average</h4>
+                        <p id="weeklyStudyAvg">0 hrs</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Monthly Average</h4>
+                        <p id="monthlyStudyAvg">0 hrs</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Total Study Hours</h4>
+                        <p id="totalStudyHours">0 hrs</p>
+                    </div>
+                </div>
+                
+                <div class="improvement-indicator">
+                    <h4>Study Progress Analysis</h4>
+                    <div id="improvementStatus" class="status-message">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Improvement Notes -->
+        <section class="section improvement-section">
+            <h2 class="section-title">🎯 Improvement Plan</h2>
+            
+            <div class="improvement-input">
+                <textarea id="improvementText" placeholder="Write what needs to be improved for the next coming days..." maxlength="2000" rows="6"></textarea>
+                <div class="char-count">
+                    <span id="charCount">0</span>/2000
+                </div>
+            </div>
+            
+            <div class="improvement-actions">
+                <button id="saveImprovementBtn" class="btn btn-primary">Save Notes</button>
+                <button id="clearImprovementBtn" class="btn btn-secondary">Clear</button>
+            </div>
+            
+            <div id="improvementNotes" class="improvement-notes">
+                <!-- Improvement notes will be displayed here -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Mission Level 6/6+ | Keep pushing towards excellence! | हर हर महादेव</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
